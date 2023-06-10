@@ -4,6 +4,13 @@
 
 int main()
 {
+    //絵文字を変数として使う
+    int 💩 = 931;
+    int 🍌 = 877;
+    std::wostringstream woss;
+    woss << L"💩 + 🍌 = " << 💩 + 🍌 << std::endl;
+    print(woss);
+
     ////shift-jis -> char マルチバイト文字
     //std::cout << "きずなあい\n";
 
@@ -12,12 +19,10 @@ int main()
     //std::wcout << L"にじさんじ\n";
 
     ////絵文字
-    print(L"😵‍💫\n");
-
     //int n = 4;
     //for (int i = 1; i <= n; ++i) {
     //    for (int k = 0; k < n - i; ++k) {
-    //        print(L" ");
+    //        print(L" ");//半角スペース
     //    }
     //    for (int j = 0; j < i; ++j) {
     //        print(L"🍌");
@@ -25,10 +30,5 @@ int main()
     //    print(L"\n");
     //}
 
-    //int 💩 = 931;
-    //int  🍓 = 15;
-    //std::wostringstream woss;
-    //woss << L"💩 + 🍓 = " << 💩 + 🍓 << std::endl;
-    //print(woss);
     system("pause>0");
 }
