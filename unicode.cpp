@@ -22,6 +22,10 @@ int main()
     int a[n * n]{};
     //２次元配列の添え字。行ｉ、列ｊ。
     int i, j;
+    //中央値 center value
+    int c = n / 2;
+    //最大値 maximum of i and j
+    int m = n - 1;
 
     //全て０で初期化しているので🍌だけ表示される
     print(L"🍌", L"🍓", a, n);
@@ -37,10 +41,7 @@ int main()
     //奇数行に１を偶数行に０をセット
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
-            if (i % 2)
-                a[n * i + j] = 1;
-            else
-                a[n * i + j] = 0;
+            a[n * i + j] = (i % 2) ? 1 : 0;
         }
     }
     print(L"🍌", L"🍓", a, n);
@@ -48,10 +49,7 @@ int main()
     //奇数列に１を偶数列に０をセット
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
-            if (j % 2)
-                a[n * i + j] = 1;
-            else
-                a[n * i + j] = 0;
+            a[n * i + j] = (j % 2) ? 1 : 0;
         }
     }
     print(L"🍌", L"🍓", a, n);
@@ -59,10 +57,7 @@ int main()
     //中央列と中央行に１をセット
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
-            if (j == n / 2 || i == n / 2)
-                a[n * i + j] = 1;
-            else
-                a[n * i + j] = 0;
+            a[n * i + j] = (j == c || i == c) ? 1 : 0;
         }
     }
     print(L"🍌", L"🍓", a, n);
@@ -70,10 +65,7 @@ int main()
     //左上から右下の対角線上に１をセット
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
-            if (j == i)
-                a[n * i + j] = 1;
-            else
-                a[n * i + j] = 0;
+            a[n * i + j] = (j == i) ? 1 : 0;
         }
     }
     print(L"🍌", L"🍓", a, n);
@@ -81,11 +73,7 @@ int main()
     //上記に加え、右上から左下の対角線上にも１をセット
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
-            int right = n - 1;
-            if (j == i || j == right - i)
-                a[n * i + j] = 1;
-            else
-                a[n * i + j] = 0;
+            a[n * i + j] = (j == i || j == m - i) ? 1 : 0;
         }
     }
     print(L"🍌", L"🍓", a, n);
@@ -93,44 +81,26 @@ int main()
     //周囲に１をセット
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
-            if (i == 0 || i == n - 1 ||
-                j == 0 || j == n - 1)
-                a[n * i + j] = 1;
-            else
-                a[n * i + j] = 0;
+            a[n * i + j] =
+                (i == 0 || i == m || j == 0 || j == m) ? 1 : 0;
         }
     }
     print(L"🍌", L"🍓", a, n);
 
     //ひし形の輪郭に１をセット
     for (i = 0; i < n; i++) {
-        /*
-        n=5の場合
-        0,1,2,3,4...i
-        2,1,0,1,2...left = abs(i-n/2)
-        2,3,4,3,2...right = n-1-left
-        */
-        int left = abs(i - n / 2);
-        int right = n - 1 - left;
         for (j = 0; j < n; j++) {
-            if (j == left || j == right)
-                a[n * i + j] = 1;
-            else
-                a[n * i + j] = 0;
+            a[n * i + j] =
+                (abs(i - c) + abs(j - c) == c) ? 1 : 0;
         }
     }
     print(L"🍌", L"🍓", a, n);
 
     //ひし形塗りつぶし
     for (i = 0; i < n; i++) {
-        int left = abs(i - n / 2);
-        int right = n - 1 - left;
         for (j = 0; j < n; j++) {
-            //left～rightの範囲に１をセット
-            if (j >= left && j <= right)
-                a[n * i + j] = 1;
-            else
-                a[n * i + j] = 0;
+            a[n * i + j] =
+                (abs(i - c) + abs(j - c) > c) ? 1 : 0;
         }
     }
     print(L"🍌", L"🍓", a, n);
