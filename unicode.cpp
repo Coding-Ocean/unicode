@@ -1,34 +1,64 @@
 ﻿#include <iostream>
-#include <sstream>
 #include "emoji.h"
-
+void nextl() 
+{ 
+    print(L"\n");
+}
+void emoji(int sw)
+{
+    print(sw ? L"🍌" : L"🐵");
+}
 int main()
 {
-    //絵文字を変数として使う
-    int 💩 = 931;
-    int 🍌 = 877;
-    std::wostringstream woss;
-    woss << L"💩 + 🍌 = " << 💩 + 🍌 << std::endl;
-    print(woss);
+    int n = 5;
+    int c = n / 2;//中央値
+    int m = n - 1;//ｘ、ｙの最大値
 
-    ////shift-jis -> char マルチバイト文字
-    //std::cout << "きずなあい\n";
 
-    ////unicode -> wchar_t ワイド文字
-    //setlocale(LC_CTYPE, "");
-    //std::wcout << L"にじさんじ\n";
+    int numPattern = 9;
+    for (int pattern = 0;  pattern < numPattern; pattern++) {
+        printf("Pattern%d\n", pattern);
+        for (int y = 0; y < n; y++) {
+            for (int x = 0; x < n; x++) {
+                switch (pattern) {
+                case 0: emoji(x % 2); break;
+                case 1: emoji(y % 2); break;
+                case 2: emoji((x + y) % 2); break;
+                case 3: emoji(x == c || y == c); break;
+                case 4: emoji(x == 0 || y == 0 || x == m || y == m); break;
+                case 5: emoji(x == y); break;
+                case 6: emoji(x == y || x == m - y); break;
+                case 7: emoji(abs(x - c) + abs(y - c) == c); break;
+                case 8: emoji(abs(x - c) + abs(y - c) >= c); break;
+                }
+            }
+            nextl();
+        }
+        nextl();
+    }
 
-    ////絵文字
-    //int n = 4;
-    //for (int i = 1; i <= n; ++i) {
-    //    for (int k = 0; k < n - i; ++k) {
-    //        print(L" ");//半角スペース
+    ////参考
+    //for (int y = 0; y < n; y++) {
+    //    for (int x = 0; x < n; x++) {
+    //        printf("%2d", abs(x - c));
     //    }
-    //    for (int j = 0; j < i; ++j) {
-    //        print(L"🍌");
-    //    }
-    //    print(L"\n");
+    //    nextl();
     //}
+    //nextl();
+    //for (int y = 0; y < n; y++) {
+    //    for (int x = 0; x < n; x++) {
+    //        printf("%2d", abs(y - c));
+    //    }
+    //    nextl();
+    //}
+    //nextl();
+    //for (int y = 0; y < n; y++) {
+    //    for (int x = 0; x < n; x++) {
+    //        printf("%2d", abs(x - c) + abs(y - c));
+    //    }
+    //    nextl();
+    //}
+    //nextl();
 
     system("pause>0");
 }
