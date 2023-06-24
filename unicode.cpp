@@ -13,9 +13,8 @@ int main()
     int n = 5;
     int c = n / 2;//中央値
     int m = n - 1;//ｘ、ｙの最大値
-
-
     int numPattern = 9;
+
     for (int pattern = 0;  pattern < numPattern; pattern++) {
         printf("Pattern%d\n", pattern);
         for (int y = 0; y < n; y++) {
