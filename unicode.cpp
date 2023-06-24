@@ -1,15 +1,9 @@
 ﻿#include <iostream>
 #include "emoji.h"
-void nextl() 
-{ 
-    print(L"\n");
-}
-void emoji(int sw)
-{
+void emoji(int sw){
     print(sw ? L"🍌" : L"🐵");
 }
-int main()
-{
+int main(){
     int n = 5;
     int c = n / 2;//中央値
     int m = n - 1;//ｘ、ｙの最大値
@@ -31,9 +25,9 @@ int main()
                 case 8: emoji(abs(x - c) + abs(y - c) >= c); break;
                 }
             }
-            nextl();
+            printf("\n");
         }
-        nextl();
+        printf("\n");
     }
 
     ////参考
