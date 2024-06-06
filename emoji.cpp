@@ -1,5 +1,5 @@
 #include <Windows.h>
-#include <sstream>
+#include "emoji.h"
 
 HANDLE HStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
